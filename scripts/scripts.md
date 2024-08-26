@@ -15,6 +15,15 @@ Run the `unzip-all` command in your shell to extract all the ZIP files within th
 `unzip-all() {   find . -maxdepth 1 -name "*.zip" -exec sh -c 'unzip -d "${1%.*}" "$1"' _ {} \; }`
 ```
 
+Run the `unrar-all` command in your shell to extract all the RAR files within the current directory and place the extracted files in separate folders based on the RAR file names.
+
+```bash
+unrar-all() {
+  # find . -maxdepth 1 -name "*.rar" -exec sh -c 'mkdir -p "${1%.*}" && 7z e -o"${1%.*}" "$1"' _ {} \;
+    find . -maxdepth 1 -name "*.rar" -exec sh -c 'if [[ $(basename "$1") =~ \.part[0-9]+\.rar$ ]]; then 7z e "$1"; else mkdir -p "${1%.*}" && 7z e -o"${1%.*}" "$1"; fi' _ {} \;
+}
+```
+
 ## wget-rmq (remove querystring)
 
 Run the `wget-rmq http://www.example.com/index.html?querystring` this allows to download files and remove the querystring from the filename.
