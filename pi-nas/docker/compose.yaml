@@ -1,0 +1,42 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - ./plex/config:/config
+      - /mnt/storage/music/edm:/music:ro
+      - /mnt/storage/music/hifi:/music2:ro
+      - /mnt/storage/tvseries:/tv:ro
+      - /mnt/storage/movies:/movies:ro
+
+  xbvr:
+    image: ghcr.io/xbapps/xbvr:latest
+    container_name: xbvr
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./xbvr/config:/root/.config
+      - /mnt/storage/vr:/videos
+
+  blocky:
+    image: spx01/blocky
+    container_name: blocky
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "4000:4000/tcp"
+    environment:
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./blocky/config.yml:/app/config.yml
