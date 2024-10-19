@@ -1,0 +1,49 @@
+plugins: fetchart embedart scrub lastgenre mbsync
+directory: / mnt/storage/music/edm
+library: ~/.config/beets/musiclibrary.blb
+art_filename: cover
+threaded: yes
+original_date: yes
+per_disc_numbering: no
+
+paths:
+    default: $albumartist/$album%aunique{}/$track - $title
+    singleton: Non-Album/$artist - $title
+    comp: $albumartist/$album%aunique{}/$track - $title
+    albumtype_soundtrack: $albumartist/$album/$track - $title 
+
+match:
+    preferred:
+      media: ['CD', 'Digital Media|File']
+
+import:
+    write: yes
+    copy: no
+    move: yes
+    resume: ask
+    incremental: yes
+    quiet_fallback: skip
+    timid: no
+    log: /config/beet.log
+
+lastgenre:
+    auto: yes
+    source: album
+
+embedart:
+    auto: no
+
+fetchart:
+    auto: yes
+
+replace:
+    '^\.': _
+    '[\x00-\x1f]': _
+    '[<>:"\?\*\|]': _
+    '[\xE8-\xEB]': e
+    '[\xEC-\xEF]': i
+    '[\xE2-\xE6]': a
+    '[\xF2-\xF6]': o
+    '[\xF8]': o
+    '\.$': _
+    '\s+$': ''
