@@ -1,8 +1,8 @@
 # Mount points
-/dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8RV4B-part1 /mnt/parity1 ext4 defaults,noatime 0 0
-/dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8J2EV-part1 /mnt/disk1 ext4 defaults,noatime 0 2
-/dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8S94G-part1 /mnt/disk2 ext4 defaults,noatime 0 2
-/dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8S919-part1 /mnt/disk3 ext4 defaults,noatime 0 2
+UUID=66db64cb-7f07-4b02-a357-1b98c6a40688 /mnt/parity1 ext4 defaults,noatime 0 0
+UUID=b45b5be0-4e96-4c42-8459-af9bdc693673 /mnt/disk1 ext4 defaults,noatime 0 2
+UUID=69db0aa6-7e4e-46ab-bcfd-f71ac359875d /mnt/disk2 ext4 defaults,noatime 0 2
+UUID=e0b230b2-5ddc-4201-a8fe-49ba9d603a15 /mnt/disk3 ext4 defaults,noatime 0 2
 
 # MergerFS
 /mnt/disk* /mnt/storage mergerfs cache.files=partial,dropcacheonclose=true,category.create=epmfs,fsname=mergerfs 0 0

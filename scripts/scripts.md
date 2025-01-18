@@ -12,7 +12,9 @@
 Run the `unzip-all` command in your shell to extract all the ZIP files within the current directory and place the extracted files in separate folders based on the ZIP file names.
 
 ```bash
-`unzip-all() {   find . -maxdepth 1 -name "*.zip" -exec sh -c 'unzip -d "${1%.*}" "$1"' _ {} \; }`
+unzip-all() {
+  find . -maxdepth 1 -name "*.zip" -exec sh -c 'unzip -d "${1%.*}" "$1"' _ {} \;
+}
 ```
 
 Run the `unrar-all` command in your shell to extract all the RAR files within the current directory and place the extracted files in separate folders based on the RAR file names.

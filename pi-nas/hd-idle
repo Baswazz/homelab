@@ -1,0 +1,1 @@
+HD_IDLE_OPTS="-i 0 -a /dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8RV4B -i 180 -a /dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8J2EV -i 600 -a /dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8S94G -i 600 -a /dev/disk/by-id/ata-ST5000LM000-2AN170_WCJ8S919 -i 600 -l /var/log/hd-idle.log"
