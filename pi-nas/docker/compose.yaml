@@ -27,49 +27,48 @@ services:
       - ./xbvr/config:/root/.config
       - /mnt/storage/vr:/videos
 
-  blocky:
-    image: spx01/blocky
-    container_name: blocky
-    restart: unless-stopped
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "4000:4000/tcp"
-    environment:
-      - TZ=Europe/Amsterdam
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./blocky/config.yml:/app/config.yml
+  # blocky:
+  #   image: spx01/blocky
+  #   container_name: blocky
+  #   restart: unless-stopped
+  #   ports:
+  #     - "53:53/tcp"
+  #     - "53:53/udp"
+  #     - "4000:4000/tcp"
+  #   environment:
+  #     - TZ=Europe/Amsterdam
+  #   volumes:
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - ./blocky/config.yml:/app/config.yml
 
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    volumes:
-      - ./prometheus:/etc/prometheus/
-      - prometheus_data:/prometheus
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--storage.tsdb.path=/prometheus"
-      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
-      - "--web.console.templates=/usr/share/prometheus/consoles"
-    ports:
-      - 9091:9090
-    restart: unless-stopped
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   container_name: prometheus
+  #   volumes:
+  #     - ./prometheus:/etc/prometheus/
+  #     - prometheus_data:/prometheus
+  #   command:
+  #     - "--config.file=/etc/prometheus/prometheus.yml"
+  #     - "--storage.tsdb.path=/prometheus"
+  #     - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+  #     - "--web.console.templates=/usr/share/prometheus/consoles"
+  #   ports:
+  #     - 9091:9090
+  #   restart: unless-stopped
 
-  grafana:
-    image: grafana/grafana-oss:latest
-    container_name: grafana
-    depends_on:
-      - prometheus
-    ports:
-      - 3000:3000
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning/
-    environment:
-      - GF_PANELS_DISABLE_SANITIZE_HTML=true
-    restart: unless-stopped
-
-volumes:
-  prometheus_data: {}
-  grafana_data: {}
+  # grafana:
+  #   image: grafana/grafana-oss:latest
+  #   container_name: grafana
+  #   depends_on:
+  #     - prometheus
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #     - ./grafana/provisioning:/etc/grafana/provisioning/
+  #   environment:
+  #     - GF_PANELS_DISABLE_SANITIZE_HTML=true
+  #   restart: unless-stopped
+# volumes:
+#   prometheus_data: {}
+#   grafana_data: {}
